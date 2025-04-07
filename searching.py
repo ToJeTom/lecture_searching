@@ -40,7 +40,7 @@ def pattern_search(seq, patt):
     return idx
 
 def binary_search(seq, search):
-    mid = int(len(seq)/2)
+    mid = len(seq) // 2
     right = len(seq) - 1
     left = 0
     if seq[right] == search:
@@ -55,7 +55,7 @@ def binary_search(seq, search):
             left = mid
         else:
             right = mid
-        mid = int((right + left)/2)
+        mid = (right + left) // 2
         if left + 1 == right:
             return None
 
