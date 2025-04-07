@@ -1,5 +1,6 @@
 import os, json
 from ast import literal_eval
+from operator import index
 
 # get current working directory path
 cwd_path = os.getcwd()
@@ -23,19 +24,35 @@ def read_data(file_name, field):
     return data[field]
 
 def linear_search(seq, search):
-    index = []
-    for i, num in enumerate(seq):
-        if num == search:
-            index.append(i)
+    index = [] #+1
+    for i, num in enumerate(seq): #+n
+        if num == search: #+1*n
+            index.append(i) #+x
 
-    return {"positions":index, "count": len(index)}
+    return {"positions":index, "count": len(index)} #+1
+
+def pattern_search(seq, patt):
+    idx = set()
+    for i in range(len(seq) - 4):
+        if seq[i:i + 3] == patt:
+            idx.add(i)
+
+    return idx
+
+
+
 
 
 def main():
     unord = read_data("sequential.json", "unordered_numbers")
-    print(unord)
+    #print(unord)
+
     wanted = 0
-    print(linear_search(unord, wanted))
+    #print(linear_search(unord, wanted))
+
+    sequence = read_data("sequential.json","dna_sequence")
+    print(pattern_search(sequence, "ATA"))
+
 
 if __name__ == '__main__':
     main()
