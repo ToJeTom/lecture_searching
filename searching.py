@@ -39,6 +39,26 @@ def pattern_search(seq, patt):
 
     return idx
 
+def binary_search(seq, search):
+    mid = int(len(seq)/2)
+    right = len(seq) - 1
+    left = 0
+    if seq[right] == search:
+        return right
+    if seq[left] == search:
+        return left
+
+    while True:
+        if seq[mid] == search:
+            return mid
+        elif seq[mid] < search:
+            left = mid
+        else:
+            right = mid
+        mid = int((right + left)/2)
+        if left + 1 == right:
+            return None
+
 
 
 
@@ -51,7 +71,11 @@ def main():
     #print(linear_search(unord, wanted))
 
     sequence = read_data("sequential.json","dna_sequence")
-    print(pattern_search(sequence, "ATA"))
+    #print(pattern_search(sequence, "ATA"))
+
+    ordered = read_data("sequential.json", "ordered_numbers")
+    searNm = 102
+    print(binary_search(ordered, searNm))
 
 
 if __name__ == '__main__':
